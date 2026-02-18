@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36930.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrackSport", "FrackSport.csproj", "{587D2786-B600-4995-94F9-E6F116DF467E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{9C8CB701-102D-CF49-A3E0-89AC09D42C2C}"
+	ProjectSection(SolutionItems) = preProject
+		.gitIgnore = .gitIgnore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{587D2786-B600-4995-94F9-E6F116DF467E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{587D2786-B600-4995-94F9-E6F116DF467E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{587D2786-B600-4995-94F9-E6F116DF467E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{587D2786-B600-4995-94F9-E6F116DF467E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A868FB23-E9A2-4BB6-9296-C97092BBD078}
+	EndGlobalSection
+EndGlobal
