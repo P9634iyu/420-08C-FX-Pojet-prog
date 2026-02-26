@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FrackSport.Models.Equipe">
+    <Position X="8.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABCAAQBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Equipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrackSport.Models.GestionBasesDonnées">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAQAAIAAAAAAIAAIAAAAEQAAACAAACAAAAAAA=</HashCode>
+      <FileName>Models\GestionBasesDonnées.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrackSport.Models.Ligue">
+    <Position X="3.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAgAAAAABAAAgBBCACUBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ligue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrackSport.MainWindow">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAQAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
