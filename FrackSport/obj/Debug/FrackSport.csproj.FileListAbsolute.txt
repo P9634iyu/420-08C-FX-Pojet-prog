@@ -82,3 +82,6 @@ C:\Users\Utilisateur\Downloads\420-08C-FX-Pojet-prog\FrackSport\obj\Debug\FrackS
 C:\Users\Utilisateur\Downloads\420-08C-FX-Pojet-prog\FrackSport\obj\Debug\FrackSport.exe
 C:\Users\Utilisateur\Downloads\420-08C-FX-Pojet-prog\FrackSport\obj\Debug\FrackSport.pdb
 C:\Users\Utilisateur\Downloads\420-08C-FX-Pojet-prog\FrackSport\obj\Debug\FrackSport.exe.config
+C:\Users\Utilisateur\Downloads\420-08C-FX-Pojet-prog\FrackSport\bin\Debug\Data\FrackSport.db
+C:\Users\Utilisateur\Downloads\420-08C-FX-Pojet-prog\FrackSport\bin\Debug\appsettings.json
+C:\Users\Utilisateur\Downloads\420-08C-FX-Pojet-prog\FrackSport\obj\Debug\FrackSport_Content.g.cs

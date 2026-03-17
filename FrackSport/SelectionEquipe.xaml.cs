@@ -20,10 +20,9 @@ namespace FrackSport.Views
     /// </summary>
     public partial class SelectionEquipe : Window
     {
-        public SelectionEquipe(List<Equipe> equipes)
+        public SelectionEquipe()
         {
-            InitializeComponent();
-            EquipesControl.ItemsSource = equipes;
+  
         }
     }
 }

@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ressources/images/england_tottenham_64x64.football-logos.cc.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/fracksport.db")]
 
 
