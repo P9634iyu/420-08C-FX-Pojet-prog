@@ -78,13 +78,12 @@ namespace FrackSport.Models
             set {
                 string[] extensions = { ".png", ".jpg", ".jpeg" };
                 string ext = Path.GetExtension(value)?.ToLower();
-                if (value.Length == 0 || !extensions.Contains(ext))
+                if (string.IsNullOrWhiteSpace(value) || !extensions.Contains(ext))
                     throw new ArgumentException(nameof(ImagePath), "Le fichier image ne doit pas être invalide ou inexistnt ");
                 _imagePath = value;
 
             }
         }
-
         public Ligue(int pId, string pNom, string pPays, string pOrganisation, int pNbEquipe, string pImage, List<Equipe> pEquipes)
 
         {

@@ -7,28 +7,25 @@
         mc:Ignorable="d"
         Title="SelectionEquipe" Height="450" Width="800">
     <Grid>
-        <ScrollViewer>
-            <ItemsControl x:Name="EquipesControl">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="10">
-                            <Image Source="{Binding ImagePath}"
-                               Width="100"
-                               Height="100"/>
-                            <TextBlock Text="{Binding Nom}"
-                                   HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-
-
+        <Image Source="/Resources/Images/Fond.png" Stretch="Fill" Panel.ZIndex="0"/>
+        <StackPanel Panel.ZIndex="1" Margin="10">
+            <TextBlock x:Name="txbTitreLigue"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0,10,0,10"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled"
+                          Height="380">
+                <WrapPanel x:Name="wpEquipes"
+                           HorizontalAlignment="Center"/>
+            </ScrollViewer>
+            <Button Content="Fermer"
+                    Width="100"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    Click="btnFermer_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

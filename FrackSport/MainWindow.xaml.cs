@@ -65,14 +65,13 @@ namespace FrackSport
                 };
 
                 StackPanel panel = new StackPanel { HorizontalAlignment = HorizontalAlignment.Center };
-                border.Child = panel; 
+                border.Child = panel;
                 // ImagePath
-            
-                string cheminImage = Path.Combine(GestionBasesDonnées.ObtenirCheminDossierImages(), l.ImagePath ?? "");
-                cheminImage = Path.GetFullPath(cheminImage); 
 
-              
-                if(!string.IsNullOrWhiteSpace(l.ImagePath)&& File.Exists(cheminImage))
+                string cheminImage = Path.Combine(GestionBasesDonnées.ObtenirCheminDossierImages(), l.ImagePath ?? "" );
+                cheminImage = Path.GetFullPath(cheminImage);
+
+                if (!string.IsNullOrWhiteSpace(l.ImagePath)&& File.Exists(cheminImage))
                 {
 
                     BitmapImage bmp = new BitmapImage();
@@ -101,23 +100,14 @@ namespace FrackSport
                 };
                 panel.Children.Add(nomlg);
 
-                Button btnEquipe = new Button { Background = Brushes.White, BorderThickness = new Thickness(0), Padding = new Thickness(2) };
-                Image imageEdit = new Image
-                {
-
-                };
-                btnEquipe.Content = imageEdit;
-                btnEquipe.Click += (object sender, RoutedEventArgs args) =>
-                {
-                    SelectionEquipe slcEquipe = new SelectionEquipe();
-                    bool? result = slcEquipe.ShowDialog();
-                    if (result.HasValue && result.Value)
-                    {
-
-                    }
-                };
               
-                panel.Children.Add(btnEquipe);
+                Ligue ligueCourante = l;
+                border.MouseLeftButtonUp += (object sender, MouseButtonEventArgs args) =>
+                {
+                    SelectionEquipe slcEquipe = new SelectionEquipe(ligueCourante);
+                    slcEquipe.ShowDialog();
+                };
+
                 wpLigues.Children.Add(border); 
             }
         }

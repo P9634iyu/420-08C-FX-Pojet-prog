@@ -15,6 +15,10 @@ namespace FrackSport.Models
         
         private string _image;
 
+        private string _entraineur;
+
+       
+
         /// <summary>
         /// recois en paramètre le nom de l'équipe 
         /// </summary>
@@ -37,13 +41,31 @@ namespace FrackSport.Models
             {
                 string[] extensions = { ".png", ".jpg", ".jpeg" };
                 string ext = Path.GetExtension(value)?.ToLower();
-                if (value.Length == 0 || !extensions.Contains(ext))
+                if (string.IsNullOrWhiteSpace(value) || !extensions.Contains(ext))
                     throw new ArgumentException(nameof(ImagePath), "Le fichier image ne doit pas être invalide ou inexistnt ");
                 _image = value;
 
             }
         }
 
+        public string Ville
+        {
+            get
+            {
+                return _ville;
+
+            }
+            set
+            {
+                _ville = value; 
+            }
+        }
+
+        public string Entraineur
+        {
+            get { return _entraineur; }
+            set { _entraineur = value; }
+        }
 
 
         /// <summary>
@@ -51,10 +73,12 @@ namespace FrackSport.Models
         /// </summary>
         /// <param name="pNom"></param>
         /// <param name="pImage"></param>
-        public Equipe(string pNom , string pImage)
+        public Equipe(string pNom , string pImage , string pVille , string pEntraineur)
         {
             Nom = pNom;
             ImagePath = pImage;
+            Ville = pVille;
+            Entraineur = pVille; 
         }
 
     }

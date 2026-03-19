@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Xceed.Wpf.Toolkit;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace FrackSport.Models
 {
@@ -25,7 +26,7 @@ namespace FrackSport.Models
 
         public static string ObtenirCheminDossierImages()
         {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images");
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Images");
         }
 
         private static SqliteConnection CreerConnection()
@@ -63,8 +64,8 @@ namespace FrackSport.Models
             {
                 cn.Open();
                 cmd = new SqliteCommand();
-                cmd.Connection = cn; 
-                string requete = "Select Id , Nom , PaysRegion, Organisation , nombreEquipe ,Logo FROM ligue  ";
+                cmd.Connection = cn;
+                string requete = "SELECT Id, Nom, PaysRegion, Organisation, NombreEquipes, Logo FROM ligue ";
 
 
 
@@ -99,6 +100,45 @@ namespace FrackSport.Models
             return ligues; 
         }
 
-       
+
+        public static List<Equipe> ObtenirEquipesParLigue(int ligueId)
+        {
+            List<Equipe> equipes = new List<Equipe>();
+            SqliteConnection cn = CreerConnection();
+            SqliteCommand cmd = null;
+            SqliteDataReader dr = null;
+            try
+            {
+                cn.Open(); // ✅ Cette ligne est obligatoire — vérifiez qu'elle est là !
+                cmd = new SqliteCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = "SELECT Nom, Logo, Ville, Entraineur FROM Equipe WHERE ligue_id = @ligueId ORDER BY Nom ASC";
+                cmd.Parameters.AddWithValue("@ligueId", ligueId);
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Equipe equipe = new Equipe(
+                        dr.GetString(0),
+                        dr.GetString(1),
+                        dr.IsDBNull(2) ? "" : dr.GetString(2),
+                        dr.IsDBNull(3) ? "" : dr.GetString(3)
+                    );
+                    equipes.Add(equipe);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erreur lors de la récupération des équipes", ex);
+            }
+            finally
+            {
+                if (dr != null) 
+                    dr.Close();
+                if (cmd != null) 
+                    cmd.Dispose();
+                FermerConnection(cn);
+            }
+            return equipes;
+        }
     }
 }

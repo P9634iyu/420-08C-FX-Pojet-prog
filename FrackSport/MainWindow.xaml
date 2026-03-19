@@ -8,15 +8,15 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
-       
-        <StackPanel>
-            
-            <!-- Fond d'écran -->
-            <Image Source="/Ressources/images/Fond.png" Stretch="Fill"  Panel.ZIndex="0"/>
-            <ScrollViewer>
-                <WrapPanel x:Name="wpLigues"/>
-            </ScrollViewer>
-        </StackPanel>
-       
+        <Image Source="/Resources/Images/Fond.png"
+           Stretch="Fill"
+           Panel.ZIndex="0" />
+
+        <ScrollViewer Panel.ZIndex="1"
+                  VerticalScrollBarVisibility="Disabled"
+                  HorizontalScrollBarVisibility="Disabled">
+            <WrapPanel x:Name="wpLigues"/>
+        </ScrollViewer>
+
     </Grid>
 </Window>
