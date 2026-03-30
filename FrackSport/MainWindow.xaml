@@ -14,7 +14,7 @@
 
         <ScrollViewer Panel.ZIndex="1"
                   VerticalScrollBarVisibility="Disabled"
-                  HorizontalScrollBarVisibility="Disabled">
+                  HorizontalScrollBarVisibility="Disabled" Margin="10,67,29,56">
             <WrapPanel x:Name="wpLigues"/>
         </ScrollViewer>
 

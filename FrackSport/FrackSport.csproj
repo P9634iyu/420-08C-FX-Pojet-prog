@@ -174,15 +174,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CalendrierEquipe.xaml.cs">
+      <DependentUpon>CalendrierEquipe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\GestionBasesDonnées.cs" />
     <Compile Include="Models\Equipe.cs" />
     <Compile Include="Models\Ligue.cs" />
+    <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\statistique.cs" />
     <Compile Include="SelectionEquipe.xaml.cs">
       <DependentUpon>SelectionEquipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContenuPrincipalXaml\SelectionLigue.xaml.cs">
       <DependentUpon>SelectionLigue.xaml</DependentUpon>
     </Compile>
+    <Compile Include="statistiquesMatch.xaml.cs">
+      <DependentUpon>statistiquesMatch.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CalendrierEquipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -200,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ContenuPrincipalXaml\SelectionLigue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="statistiquesMatch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,9 +241,6 @@
     <None Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="Data\FrackSport.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Models\DiagrammesFrackSport.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -239,7 +252,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Fond.png" />
+    <Content Include="Resources\Images\Fond.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Images\LaLiga.png">
@@ -260,96 +275,250 @@
     <Folder Include="Resources\Fonts\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Arsenal.png" />
-    <Resource Include="Resources\Images\Ashton-villa.png" />
-    <Resource Include="Resources\Images\Bournemouth.png" />
-    <Resource Include="Resources\Images\Brentford.png" />
-    <Resource Include="Resources\Images\Brighton.png" />
-    <Resource Include="Resources\Images\Burnley.png" />
-    <Resource Include="Resources\Images\Chelsea.png" />
-    <Resource Include="Resources\Images\Crystal-palace.png" />
-    <Resource Include="Resources\Images\Everton.png" />
-    <Resource Include="Resources\Images\Fulham.png" />
-    <Resource Include="Resources\Images\Leeds-united.png" />
+    <Content Include="Resources\Images\Arsenal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ashton-villa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Bournemouth.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Brentford.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Brighton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Burnley.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Chelsea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Crystal-palace.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Everton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Fulham.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Leeds-united.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Liverpool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Images\Manchester-city.png" />
-    <Resource Include="Resources\Images\Manchester-united.png" />
-    <Resource Include="Resources\Images\Newcastle.png" />
-    <Resource Include="Resources\Images\Nottingham-forest.png" />
-    <Resource Include="Resources\Images\Sunderland.png" />
-    <Resource Include="Resources\Images\West-ham.png" />
-    <Resource Include="Resources\Images\Wolves.png" />
+    <Content Include="Resources\Images\Manchester-city.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Manchester-united.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Newcastle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Nottingham-forest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Sunderland.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\West-ham.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Wolves.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Athletic-club.png" />
-    <Resource Include="Resources\Images\Atletico-madrid.png" />
-    <Resource Include="Resources\Images\Barcelona.png" />
-    <Resource Include="Resources\Images\Celta.png" />
-    <Resource Include="Resources\Images\Deportivo.png" />
-    <Resource Include="Resources\Images\Elche.png" />
-    <Resource Include="Resources\Images\Getafe.png" />
-    <Resource Include="Resources\Images\Girona.png" />
-    <Resource Include="Resources\Images\Levante.png" />
-    <Resource Include="Resources\Images\Mallorca.png" />
-    <Resource Include="Resources\Images\Osasuna.png" />
-    <Resource Include="Resources\Images\Oviedo.png" />
-    <Resource Include="Resources\Images\Rayo-vallecano.png" />
-    <Resource Include="Resources\Images\Real-betis.png" />
-    <Resource Include="Resources\Images\Real-madrid.png" />
-    <Resource Include="Resources\Images\Real-sociedad.png" />
-    <Resource Include="Resources\Images\Sevilla.png" />
-    <Resource Include="Resources\Images\Valencia.png" />
-    <Resource Include="Resources\Images\Villarreal.png" />
+    <Content Include="Resources\Images\Athletic-club.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Atletico-madrid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Barcelona.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Celta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Deportivo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Elche.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Getafe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Girona.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Levante.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Mallorca.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Osasuna.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Oviedo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Rayo-vallecano.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Real-betis.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Real-madrid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Real-sociedad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Sevilla.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Valencia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Villarreal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Angers.png" />
-    <Resource Include="Resources\Images\As-monaco.png" />
-    <Resource Include="Resources\Images\Auxerre.png" />
-    <Resource Include="Resources\Images\Brestois.png" />
-    <Resource Include="Resources\Images\Fc-metz.png" />
-    <Resource Include="Resources\Images\Havre-ac.png" />
-    <Resource Include="Resources\Images\Lille.png" />
-    <Resource Include="Resources\Images\Lorient.png" />
-    <Resource Include="Resources\Images\Lyon.png" />
-    <Resource Include="Resources\Images\Marseille.png" />
-    <Resource Include="Resources\Images\Nantes.png" />
-    <Resource Include="Resources\Images\Nice.png" />
-    <Resource Include="Resources\Images\Paris-fc.png" />
-    <Resource Include="Resources\Images\PSG.png" />
-    <Resource Include="Resources\Images\Lens.png" />
-    <Resource Include="Resources\Images\Strasbourg.png" />
-    <Resource Include="Resources\Images\Rennes.png" />
-    <Resource Include="Resources\Images\Toulouse.png" />
+    <None Include="Resources\Images\Angers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Resources\Images\As-monaco.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Auxerre.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Brestois.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Fc-metz.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Havre-ac.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Lille.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Lorient.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Lyon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Marseille.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Nantes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Nice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Paris-fc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\PSG.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Lens.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Strasbourg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Rennes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Toulouse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Tottenham.png" />
+    <Content Include="Resources\Images\Tottenham.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\qarabag.png" />
-    <Resource Include="Resources\Images\Club-brugge.png" />
-    <Resource Include="Resources\Images\Cyprus.png" />
-    <Resource Include="Resources\Images\SlaviaPraha.png" />
-    <Resource Include="Resources\Images\Copenhagen.png" />
-    <Resource Include="Resources\Images\Leverkusen.png" />
-    <Resource Include="Resources\Images\Dortmund.png" />
-    <Resource Include="Resources\Images\Eintracht.png" />
-    <Resource Include="Resources\Images\Olympiacos.png" />
-    <Resource Include="Resources\Images\Atalanta.png" />
-    <Resource Include="Resources\Images\Inter.png" />
-    <Resource Include="Resources\Images\Juventus.png" />
-    <Resource Include="Resources\Images\Napoli.png" />
-    <Resource Include="Resources\Images\Kairat.png" />
-    <Resource Include="Resources\Images\Ajax.png" />
-    <Resource Include="Resources\Images\PSV.png" />
-    <Resource Include="Resources\Images\BodoGlimt.png" />
-    <Resource Include="Resources\Images\Benfica.png" />
-    <Resource Include="Resources\Images\Sporting.png" />
-    <Resource Include="Resources\Images\Galatasaray.png" />
+    <Content Include="Resources\Images\qarabag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Club-brugge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Cyprus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SlaviaPraha.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Copenhagen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Leverkusen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Dortmund.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Eintracht.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Olympiacos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Atalanta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Inter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Juventus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Napoli.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Kairat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ajax.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\PSV.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\BodoGlimt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Benfica.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Sporting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Galatasaray.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Bayern.png" />
+    <Content Include="Resources\Images\Bayern.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets" Condition="Exists('packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets')" />

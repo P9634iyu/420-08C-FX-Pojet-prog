@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Data;
 using Xceed.Wpf.Toolkit;
 using Microsoft.Extensions.Logging.Abstractions;
+using System.Windows.Navigation;
 
 namespace FrackSport.Models
 {
@@ -31,9 +32,12 @@ namespace FrackSport.Models
 
         private static SqliteConnection CreerConnection()
         {
-            string connectionString = _config.GetConnectionString(CONNECTION_STRING); 
+            string connectionString = _config.GetConnectionString(CONNECTION_STRING);
 
-            if(connectionString == null)
+           
+            
+
+            if (connectionString == null)
             {
                 throw new InvalidOperationException("Chaîne de connexion 'DefaultConnection' non trouvée."); 
 
@@ -109,7 +113,7 @@ namespace FrackSport.Models
             SqliteDataReader dr = null;
             try
             {
-                cn.Open(); // ✅ Cette ligne est obligatoire — vérifiez qu'elle est là !
+                cn.Open();
                 cmd = new SqliteCommand();
                 cmd.Connection = cn;
                 cmd.CommandText = "SELECT Nom, Logo, Ville, Entraineur FROM Equipe WHERE ligue_id = @ligueId ORDER BY Nom ASC";
@@ -139,6 +143,98 @@ namespace FrackSport.Models
                 FermerConnection(cn);
             }
             return equipes;
+        }
+
+        public static List<Match> ObtenirMatchsParEquipe(int equipeId)
+        {
+            List<Match> matchs = new List<Match>();
+            SqliteConnection cn = CreerConnection();
+            SqliteCommand cmd = null;
+            SqliteDataReader dr = null;
+            try
+            {
+                cn.Open();
+                cmd = new SqliteCommand();
+                cmd.Connection = cn;
+               
+                cmd.CommandText = @"
+            SELECT 
+    m.id, ed.Nom AS DomicileNom, ee.Nom AS ExterieurNom,  m.date_match, m.score_domicile, m.score_exterieur,m.statut,
+    sd.possession AS possession_domicile, sd.tirs_total AS tirs_domicile, sd.tirs_cadres AS tirs_cadres_domicile, sd.corners AS corners_domicile, sd.fautes AS fautes_domicile,
+    sd.cartons_jaunes AS jaunes_domicile, sd.cartons_rouges AS rouges_domicile, se.possession AS possession_exterieur,se.tirs_total AS tirs_exterieur,
+    se.tirs_cadres AS tirs_cadres_exterieur,se.corners AS corners_exterieur, se.fautes AS fautes_exterieur, se.cartons_jaunes AS jaunes_exterieur, se.cartons_rouges AS rouges_exterieur
+    FROM Match m  JOIN Equipe ed ON m.equipe_domicile_id = ed.id JOIN Equipe ee ON m.equipe_exterieur_id = ee.id
+    LEFT JOIN StatistiqueMatch sd ON sd.match_id = m.id AND sd.equipe_id = ed.id
+     LEFT JOIN StatistiqueMatch se  ON se.match_id = m.id AND se.equipe_id = ee.id";
+                
+                cmd.Parameters.AddWithValue("@equipeId", equipeId);
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Match match = new Match(dr.GetInt32(0), dr.GetString(1),dr.GetString(2),DateTime.Parse(dr.GetString(3)),
+                        dr.IsDBNull(4) ? (int?)null : dr.GetInt32(4), dr.IsDBNull(5) ? (int?)null : dr.GetInt32(5),
+                        dr.GetString(6) );
+                    matchs.Add(match);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erreur lors de la récupération des matchs", ex);
+            }
+            finally
+            {
+                if (dr != null) dr.Close();
+                if (cmd != null) cmd.Dispose();
+                FermerConnection(cn);
+            }
+
+            return matchs;
+        }
+
+        public static List<statistique> ObtenirStatistiqueParMatch (int matchId)
+        {
+            List<statistique> stats = new List<statistique>();
+            SqliteConnection cn = CreerConnection();
+            SqliteCommand cmd = null;
+            SqliteDataReader dr = null;
+            try
+            {
+                cn.Open();
+                cmd = new SqliteCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"    SELECT s.id, s.match_id, e.Nom, s.possession, s.tirs_total, s.tirs_cadres," +
+                    " s.corners, s.fautes, s.cartons_jaunes, s.cartons_rouges FROM StatistiqueMatch s JOIN Equipe e ON s.equipe_id = e.id WHERE s.match_id = @matchId";
+
+                cmd.Parameters.AddWithValue("@matchId", matchId);
+
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    statistique stat = new statistique(
+                        dr.GetInt32(0), dr.GetInt32(1), dr.GetString(2), dr.GetInt32(3), dr.GetInt32(4), dr.GetInt32(5),
+                        dr.GetInt32(6), dr.GetInt32(7), dr.GetInt32(8), dr.GetInt32(9)) ;
+                    stats.Add(stat);
+                }
+              
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erreur lors de la récupération des statistiques ", ex); 
+            }
+            finally
+            {
+                if(dr != null)
+                {
+                    dr.Close() ;
+                }
+                if(cmd != null)
+                {
+                    cmd.Dispose();
+
+                }
+                FermerConnection(cn);
+            }
+            return stats; 
         }
     }
 }

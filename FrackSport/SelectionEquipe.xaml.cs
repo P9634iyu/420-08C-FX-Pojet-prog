@@ -118,6 +118,15 @@ namespace FrackSport.Views
                 panel.Children.Add(ville);
 
                 wpEquipes.Children.Add(border);
+
+                Equipe equipeCourante = e;
+                int equipeId = equipeCourante.Id;
+
+                border.MouseLeftButtonUp += (object sender, MouseButtonEventArgs args) =>
+                {
+                    CalendrierEquipe calendrier = new CalendrierEquipe(equipeCourante, equipeId);
+                    calendrier.ShowDialog();
+                };
             }
         }
 

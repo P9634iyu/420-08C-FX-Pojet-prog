@@ -10,6 +10,15 @@ namespace FrackSport.Models
     public class Equipe
     {
 
+        private int _id;
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+
         private string _nom;
         private string _ville; 
         
@@ -73,12 +82,20 @@ namespace FrackSport.Models
         /// </summary>
         /// <param name="pNom"></param>
         /// <param name="pImage"></param>
-        public Equipe(string pNom , string pImage , string pVille , string pEntraineur)
+        public Equipe( string pNom , string pImage , string pVille , string pEntraineur)
         {
             Nom = pNom;
             ImagePath = pImage;
             Ville = pVille;
             Entraineur = pVille; 
+        }
+        public Equipe(int pId, string pNom, string pImage, string pVille, string pEntraineur)
+        {
+            Id = pId;
+            Nom = pNom;
+            ImagePath = pImage;
+            Ville = pVille;
+            Entraineur = pEntraineur;
         }
 
     }
